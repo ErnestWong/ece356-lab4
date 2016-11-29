@@ -4,10 +4,11 @@ UNION
        salary,
        Master.playerID, weight, height, bats, debut
 FROM Batting
-LEFT JOIN Salaries ON Batting.playerID = Salaries.playerID 
-LEFT JOIN Master ON Master.playerID = Batting.playerID
+JOIN Salaries USING(yearID, playerID, lgID)
+LEFT JOIN Master USING(playerID)
 INTO OUTFILE "test.csv"
 FIELDS ENCLOSED BY '"'
 TERMINATED BY ';'
 ESCAPED BY '"'
 LINES TERMINATED BY '\r\n');
+
