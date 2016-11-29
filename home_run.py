@@ -1,5 +1,6 @@
 import copy
 import csv
+from datetime import datetime
 
 
 columns_to_avg = ["R", "H", "2B", "3B", "HR", "salary", "weight", "height"]
@@ -26,7 +27,7 @@ def read_csv(filename):
 
 def add_avgs(columns, entries, row):
     for column in columns:
-        row[column + "_avg"] = calc_avg(column, entries) if len(entries) > 0 else 0
+        row[column + "_avg"] = calc_avg(column, entries)
 
 
 def sanitize_data(data):
@@ -58,17 +59,15 @@ def run():
 
     for row in data:
         player = row["playerID"]
-        year = row["yearID"]
-        entries = filter(lambda x: x["yearID"] > year, data_by_player[player])
+        cur_year = row["yearID"]
+        entries = filter(lambda x: x["yearID"] <= cur_year, data_by_player[player])
 
         add_avgs(columns_to_avg, entries, row)
 
+        debut = datetime.strptime(row["debut"], "%Y-%m-%d %M:%H:%S")
+        row["num_years_in_league"] = cur_year - debut.year
 
     to_csv(data, "cleansed_data.csv")
-
-def sanitize_date():
-    filename = "cleansed_data.csv"
-
 
 
 run()
