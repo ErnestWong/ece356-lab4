@@ -4,7 +4,8 @@ import numpy as np
 pitchers = pd.read_csv("./raw_data/all_star_pitchers.csv", sep=',');
 batters = pd.read_csv("./raw_data/all_star_batters.csv", sep=',', parse_dates=["debut"]);
 
-batters = batters[batters.AB != '\N'][batters.R != '\N'][batters.H != '\N'][batters['2B'] != '\N'][batters['3B'] != '\N'][batters['HR'] != '\N'][batters['RBI'] != '\N'][batters['debut'] != '\N'][batters['weight'] != '\N'][batters['height'] != '\N'][batters['CS'] != '\N'][batters['SB'] != '\N'][batters['BB'] != '\N'][batters['SO'] != '\N'][batters['IBB'] != '\N'][batters['SH'] != '\N'][batters['SF'] != '\N'][batters['GIDP'] != '\N']
+batters = batters[batters.AB != '\N'][batters.R != '\N'][batters.H != '\N'][batters['2B'] != '\N'][batters['3B'] != '\N'][batters['HR'] != '\N'][batters['RBI'] != '\N'][batters['debut'] != '\N'][batters['weight'] != '\N'][batters['height'] != '\N'][batters['CS'] != '\N'][batters['SB'] != '\N'][batters['BB'] != '\N'][batters['SO'] != '\N'][batters['IBB'] != '\N'][batters['SH'] != '\N'][batters['SF'] != '\N'][batters['GIDP'] !=
+        '\N'][batters['throws'] !='\N'][batters['bats'] != '\N']
 
 # get rid of rows where a player played in multiple all star games
 batters = batters.drop_duplicates(['playerID', 'yearID'])
@@ -35,4 +36,4 @@ batters['previous_appearances'] = np.vectorize(previous_all_star_appearances)(ba
 # bg = batters[['playerID', 'yearID']].apply(lambda b: batters.where(batters['yearID'] < b.yearID).groupby(['playerID']).agg({'GP': np.sum}).astype(int))
 
 # Note the GP field is actually a 1 or 0 - 1 if the player has played in an all star game that year
-print batters[["playerID", "lgID", "yearID", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "SH", "SF", "GIDP", "G", "GP", "height", "weight", "debut", "age", "num_years_in_league", "previous_appearances"]].to_csv(index_label=False, index=False)
+print batters[["playerID", "lgID", "yearID", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "SH", "SF", "GIDP", "G", "GP", "height", "weight", "debut", "age", "throws", "bats", "num_years_in_league", "previous_appearances"]].to_csv(index_label=False, index=False)
