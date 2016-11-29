@@ -59,12 +59,15 @@ def run():
     for row in data:
         player = row["playerID"]
         year = row["yearID"]
-        entries = filter(lambda x: x["yearID"] < year, data_by_player[player])
+        entries = filter(lambda x: x["yearID"] > year, data_by_player[player])
 
         add_avgs(columns_to_avg, entries, row)
 
 
     to_csv(data, "cleansed_data.csv")
+
+def sanitize_date():
+    filename = "cleansed_data.csv"
 
 
 
