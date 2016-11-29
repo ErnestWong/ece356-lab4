@@ -6,7 +6,7 @@ UNION
        AB, SO, BB, IBB, SH, SF, GIDP, birthYear
 FROM Batting
 JOIN Salaries USING(yearID, playerID, lgID)
-LEFT JOIN Master USING(playerID);
+LEFT JOIN Master USING(playerID)
 INTO OUTFILE "/Users/peterchu/test.csv"
 FIELDS ENCLOSED BY '"'
 TERMINATED BY ';'
