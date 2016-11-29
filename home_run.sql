@@ -1,6 +1,6 @@
-(SELECT "yearID", "G", "R", "H", "2B", "3B", "HR", "salary", "playerID", "weight", "height", "bats", "debut", "AB", "SO", "BB", "IBB", "SH", "SF", "GIDP", "birthYear")
+(SELECT "yearID", "G", "R", "H", "2B", "3B", "HR", "RBI", "salary", "playerID", "weight", "height", "bats", "debut", "AB", "SO", "BB", "IBB", "SH", "SF", "GIDP", "birthYear")
 UNION
-(SELECT Batting.yearID, G, R, H, 2B, 3B, HR,
+(SELECT Batting.yearID, G, R, H, 2B, 3B, HR, RBI,
        salary,
        Master.playerID, weight, height, bats, debut, 
        AB, SO, BB, IBB, SH, SF, GIDP, birthYear
