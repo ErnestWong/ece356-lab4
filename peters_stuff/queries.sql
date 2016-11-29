@@ -5034,11 +5034,11 @@ Query OK, 0 rows affected (0.00 sec)
 mysql> DROP TABLE AllStarPitchers;
 Query OK, 0 rows affected (0.00 sec)
 
-mysql> CREATE TABLE AllStarBatters AS select * FROM Batting LEFT OUTER JOIN AllstarFull USING (playerID, teamID, lgID, yearID);
+mysql> CREATE TABLE AllStarBatters AS select * FROM Batting LEFT OUTER JOIN AllstarFull USING (playerID, teamID, lgID, yearID) LEFT OUTER JOIN Master USING (playerID);
 Query OK, 100047 rows affected (0.99 sec)
 Records: 100047  Duplicates: 0  Warnings: 0
 
-mysql> CREATE TABLE AllStarPitchers AS select * FROM Pitching LEFT OUTER JOIN AllstarFull USING (playerID, teamID, lgID, yearID);
+mysql> CREATE TABLE AllStarPitchers AS select * FROM Pitching LEFT OUTER JOIN AllstarFull USING (playerID, teamID, lgID, yearID) LEFT OUTER JOIN Master USING (playerID);
 Query OK, 43388 rows affected (0.51 sec)
 Records: 43388  Duplicates: 0  Warnings: 0
 
