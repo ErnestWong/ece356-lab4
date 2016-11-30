@@ -58,9 +58,14 @@ def to_csv(toCSV, filename):
         dict_writer.writeheader()
         dict_writer.writerows(toCSV)
 
+# Must have at bats greater than 100
+def remove_non_batters(data):
+    return filter(lambda row: row["AB"] > 100, data)
+
 def run():
     data = read_csv("test.csv")
     data = sanitize_data(data)
+    data = remove_non_batters(data)
     print data[0]
 
     players_list = list(set(map(lambda row: row["playerID"], data)))
