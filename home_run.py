@@ -87,7 +87,9 @@ def run():
             to_remove.add(player + "_" + str(cur_year))
 
     data = filter(lambda x: x["playerID"] + "_" + str(x["yearID"]) not in to_remove, data)
-    
+
+    data = filter(lambda row: row["num_years_in_league"] > 5, data)
+
     to_csv(data, "cleansed_data.csv")
 
 
